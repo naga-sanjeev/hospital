@@ -1,0 +1,36 @@
+<div class="login-content">
+    
+    <h1><span>SIGN IN </span></h1>
+    <form [formGroup]="loginForm">
+  
+    <div class="login-input-wrapper">
+      <input type="text" autocomplete="off"formControlName="email" placeholder="Email" pInputText >
+      <i class="pi pi-user"></i>
+    </div>
+  
+    <div class="login-input-wrapper">
+      <input type="password" autocomplete="off" formControlName="password" placeholder="Password" pInputText>
+      <i class="pi pi-lock"></i>
+    </div>
+    <div class="p-grid ui-fluid">
+      <div class="p-col-4">
+        <div class="p-grid ui-fluid forgetCss">
+          <div class="p-col-4 p-offset-5">
+            <a style="text-align: center;cursor: pointer;" >Forgot password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+    <button  (click)="login()" pButton type="button"  label="Sign In"></button>
+    <div>
+  
+      
+      Don't have an account?<a  icon="pi pi-info-circle" label="Show"
+        style="text-align: center;cursor: pointer;">
+        Register here</a>
+    </div>
+   
+  
+  
+  </div>

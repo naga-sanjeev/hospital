@@ -1,0 +1,71 @@
+.p-panel-header {
+  align-items: center;
+  // /* display: flex; */
+  justify-content: space-between;
+}
+.cardform{
+  height:100%;
+}
+@media (min-width:300px) and (max-width:374px) {
+
+    .addhBtn {
+      width: 102%;
+     
+    }
+  
+  
+  }
+  @media (min-width:374px) and (max-width:424px) {
+    .addhBtn {
+      width: 102%;
+     ;
+    }
+  
+  }
+  @media (min-width:425px) and (max-width:450px) {
+    .addhBtn {
+      width: 102%;
+     
+    }
+  
+  }
+  @media (min-width:451px) and (max-width:991px) {
+    .btnsCSS1{
+      float: right;
+    }
+    .addhBtn {
+      width: 120px;
+
+    }
+  
+  }
+  @media (min-width:992px) and (max-width:1023px) {
+    .btnsCSS1{
+      float: right;
+    }
+    .addhBtn {
+      width: 120px;
+   
+    }
+ 
+  }
+    
+  
+  @media (min-width:1024px) and (max-width:2660px) {
+    .btnsCSS1{
+      float: right;
+    }
+    .addhBtn {
+      width: 120px;
+      
+    }
+  }
+
+  .btn{
+    float:right;
+    margin-right: 0.5%;
+  }
+  
+  
+  
+  

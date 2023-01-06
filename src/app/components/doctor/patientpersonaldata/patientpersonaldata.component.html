@@ -1,0 +1,226 @@
+<p-panel header="Patients Personal Data">
+    <ng-template pTemplate="icons">
+        <p-button icon="pi pi-arrow-left" (click)="pannelback()">
+        </p-button>&nbsp; &nbsp;
+    </ng-template>
+    <p-card>
+        <p-steps [model]="items" [readonly]="false">
+        </p-steps>
+        <br />
+        <div *ngIf="step=='0'">
+            <form [formGroup]="patientPersonalForm">
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">First Name<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" pKeyFilter="int" autocomplete="off" pInputText
+                            formControlName="firstName" placeholder="firstName">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('firstName').touched && this.patientPersonalForm.get('firstName').invalid && this.patientPersonalForm.get('firstName').errors.maxlength">
+                                Maximum length is 30
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('firstName').touched && this.patientPersonalForm.get('firstName').invalid && this.patientPersonalForm.get('firstName').errors.pattern">
+                                Only alphabetrs are rquired
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Middle Name <span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText formControlName="middleName"
+                            placeholder="MiddleName">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('middleName').touched && this.patientPersonalForm.get('middleName').invalid && this.patientPersonalForm.get('middleName').errors.maxlength">
+                                Maximum length is 30
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('middleName').touched && this.patientPersonalForm.get('middleName').invalid && this.patientPersonalForm.get('middleName').errors.pattern">
+                                Only alphabetrs are rquired
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Last Name <span class="mandatoryColor"></span> </label>
+                        <input id="input" type="text" autocomplete="off" pInputText formControlName="lastName"
+                            placeholder="LastName">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('lastName').touched && this.patientPersonalForm.get('lastName').invalid && this.patientPersonalForm.get('lastName').errors.maxlength">
+                                Maximum length is 30
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('lastName').touched && this.patientPersonalForm.get('lastName').invalid && this.patientPersonalForm.get('lastName').errors.pattern">
+                                Only alphabetrs are rquired
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Email<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText formControlName="email"
+                            placeholder="Email">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('email').touched && this.patientPersonalForm.get('email').invalid && this.patientPersonalForm.get('email').errors.required">
+                                Email is required
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('email').touched && this.patientPersonalForm.get('email').invalid && this.patientPersonalForm.get('email').errors.email">
+                                Enter Valid email
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class=" p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Phone Number <span class="mandatoryColor"></span></label>
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText placeholder="PhoneNumber" formControlName="phoneNumber">
+                        </div>
+                        <div>
+                            <span class="validationtest" *ngIf="this.patientPersonalForm.get('phoneNumber').touched ">
+                                PhoneNumber is required
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('phoneNumber').touched && this.patientPersonalForm.get('phoneNumber').invalid && this.patientPersonalForm.get('phoneNumber').errors.pattern">
+                                Only Numbers are allowed
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Alternate Number </label>
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText placeholder="Alternate Number"
+                                formControlName="alternateNumber">
+                        </div>
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('alternateNumber').touched && this.patientPersonalForm.get('alternateNumber').invalid && this.patientPersonalForm.get('alternateNumber').errors.pattern">
+                                Only Numbers are allowed
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Age </label>
+                        <div class="p-inputgroup">
+                            <input type="text" pInputText placeholder="Age" formControlName="age">
+                        </div>
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('age').touched && this.patientPersonalForm.get('age').invalid && this.patientPersonalForm.get('age').errors.pattern">
+                                Only Numbers are allowed
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Address Line1 </label>
+                        <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
+                            formControlName="addresLine1" placeholder="Address Line1">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('addresLine1').touched && this.patientPersonalForm.get('addresLine1').invalid">
+                                Enter address
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first"> Address Line2</label>
+                        <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
+                            formControlName="addressLine2" placeholder="Address Line2">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('addressLine2').touched && this.patientPersonalForm.get('addressLine2').invalid && this.patientPersonalForm.get('addressLine2').errors.required">
+                                Enter number of Positions
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">City<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
+                            formControlName="city" placeholder="City">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('city').touched && this.patientPersonalForm.get('city').invalid">
+                                Enter City Name
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">State<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
+                            formControlName="state" placeholder="State">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('state').touched && this.patientPersonalForm.get('state').invalid ">
+                                Enter state name
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Country</label>
+                        <input id="input" type="text" maxlength="5" pKeyFilter="int" autocomplete="off" pInputText
+                            optionValue="code" formControlName="country" placeholder="Country">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('country').touched && this.patientPersonalForm.get('country').invalid ">
+                                Enter country name
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-fluid p-formgrid p-grid">
+
+                    <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                        <label class="first">Pincode</label>
+                        <input id="input" type="text" maxlength="5" pKeyFilter="int" autocomplete="off" pInputText
+                            optionValue="code" formControlName="pinCode" placeholder="PinCode">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.patientPersonalForm.get('pinCode').touched && this.patientPersonalForm.get('pinCode').invalid ">
+                                Enter PinCode
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <button pButton class="btn" type="button" label="Next" (click)="next()"></button>
+                <br />
+            </form>
+        </div>
+        <div *ngIf="step=='1'">
+            <form [formGroup]="patientRecordForm">
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
+                        <label class="first">Patient Problem<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" pKeyFilter="int" autocomplete="off" pInputText
+                            formControlName="patientProblem" placeholder="PatientProblem">
+                    </div>
+                    <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
+                        <label class="first">Lab Reports <span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText formControlName="labReports"
+                            placeholder="LabReports">
+                    </div>
+                    <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
+                        <label class="first">Scanning Reports <span class="mandatoryColor"></span> </label>
+                        <input id="input" type="text" autocomplete="off" pInputText formControlName="scanningReports"
+                            placeholder="ScanningReports">
+                    </div>
+                    <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
+                        <label class="first">Doctor Description Line1<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText
+                            formControlName="doctorDescriptionLine1" placeholder="DoctorDescriptionLine1">
+                    </div>
+                    <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
+                        <label class="first">Doctor Description Line2<span class="mandatoryColor"></span></label>
+                        <input id="input" type="text" autocomplete="off" pInputText
+                            formControlName="doctorDescriptionLine2" placeholder="DoctorDescriptionLine2">
+                    </div>
+                </div>
+                <button pButton class="btn" type="button" (click)="submit()" label="Submit"></button>
+                <button pButton class="btn" type="button" label="Previous" (click)="back()"></button>
+                <br />
+            </form>
+        </div>
+    </p-card>
+</p-panel>

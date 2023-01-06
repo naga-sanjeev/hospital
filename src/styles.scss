@@ -1,0 +1,37 @@
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/prismjs/themes/prism-coy.css";
+@import "../node_modules/@fullcalendar/core/main.min.css";
+@import "../node_modules/@fullcalendar/daygrid/main.min.css";
+@import "../node_modules/@fullcalendar/timegrid/main.min.css";
+@import "assets/demo/flags/flags.css";
+
+// .p-panel .p-panel-header {
+//     border: 1px solid #dee2e6;
+//     padding: 1rem;
+//     background: #2368A0;
+//     color: white;
+//     border-top-right-radius: 4px;
+//     border-top-left-radius: 4px;
+// }
+
+// .p-datatable .p-datatable-thead > tr > th {
+//     text-align: left;
+//     padding: 1rem 1rem;
+//     border: 1px solid #e9ecef;
+//     border-width: 0 0 1px 0;
+//     font-weight: 600;
+//     background: #2368A0;
+//     color: white;
+//     transition: box-shadow 0.2s;
+// }
+.validationtest {
+    color: red;
+  }
+  
+
+  .norecorddata {
+    font-family: sans-serif;
+    font-size: 14px;
+  }

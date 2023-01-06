@@ -1,0 +1,765 @@
+<!-- <p-card> -->
+    <p-panel [toggleable]="false">
+        <p-header>
+            <b>
+                Edit Requirement
+            </b>
+            <i class="pi pi-arrow-left" style="font-size: 20px;cursor: pointer; color:blue;margin-left:51em;"
+                (click)="goto()"></i>
+        </p-header>
+        
+    <p-accordion>
+        <p-accordionTab  [selected]="!recCandidates" >
+            <p-header>
+                <b>Requirement-Id : </b>{{this.reqId}}&nbsp;&nbsp;
+                <b>Position Title :</b> {{this.reqName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Max Rate : </b>{{this.maxrate |
+                currency: 'USD' : true}}
+                <div class="pi pi-arrow-left" style="float: right;cursor: pointer;font-size: 20px;margin-left: 36em;" (click)="backRouting()" >
+                </div>
+              </p-header>
+        <form [formGroup]="editRequirementsForm">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Position Title<span class="mandatoryColor">*</span></label>
+                    <input id="input" type="text" maxlength="20" pKeyFilter="int" autocomplete="off" pInputText
+                        formControlName="positionTitle" placeholder="Enter Title(Ex : Project Developer)">
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('positionTitle').touched && this.editRequirementsForm.get('positionTitle').invalid && this.editRequirementsForm.get('positionTitle').errors.required">
+                            Enter position title
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Position Category <span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="positionData" placeholder="Select Position Category "  optionValue="id" [showClear]="false"  (onChange)="getRolesBasedonCategory($event.value)"  optionLabel="jobCategory"
+                        formControlName="positionCategory"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('positionCategory').touched && this.editRequirementsForm.get('positionCategory').invalid && this.editRequirementsForm.get('positionCategory').errors.required">
+                            Please select position category
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Job Role <span class="mandatoryColor">*</span> </label>
+                    <p-dropdown [options]="jobTitleData" placeholder="Select Job Role "  optionValue="id"   [showClear]="false" optionLabel="title"
+                        formControlName="jobRole"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('jobRole').touched && this.editRequirementsForm.get('jobRole').invalid && this.editRequirementsForm.get('jobRole').errors.required">
+                            Please select Job Role
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Department<span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="departmentList" placeholder="Select Department" [showClear]="false"  optionLabel="name"  optionValue="id" 
+                        formControlName="department"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('department').touched && this.editRequirementsForm.get('department').invalid && this.editRequirementsForm.get('department').errors.required">
+                            Please select department
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class=" p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Min Rate </label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">$</span>
+                        <input type="text" pInputText placeholder="Min Rate" disabled="true" formControlName="minRate">
+                        <span class="p-inputgroup-addon">/Hr</span>
+
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Max Rate </label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">$</span>
+                        <input type="text" pInputText placeholder="Max Rate" formControlName="maxRate">
+                        <span class="p-inputgroup-addon">/Hr</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Number of Positions <span class="mandatoryColor">*</span></label>
+                    <input id="input" type="text" maxlength="5" pKeyFilter="int" autocomplete="off" pInputText optionValue="code"
+                        formControlName="positions" placeholder="Enter Number of Positions ">
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('positions').touched && this.editRequirementsForm.get('positions').invalid && this.editRequirementsForm.get('positions').errors.required">
+                            Enter number of Positions
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Work Location <span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="locationList" placeholder="Select Work Location" [showClear]="false" optionLabel="name" optionValue="locId"
+                        formControlName="workLocation"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('workLocation').touched && this.editRequirementsForm.get('workLocation').invalid && this.editRequirementsForm.get('workLocation').errors.required">
+                            Please select Work Location
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first"> Required Experience<span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="exprienceList" placeholder="Select   Required Experience" [showClear]="false" optionLabel="label"optionValue="code"
+                        formControlName="experience"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('experience').touched && this.editRequirementsForm.get('experience').invalid && this.editRequirementsForm.get('experience').errors.required">
+                            Please select experience
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Hire Type<span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="hireTypeList"  
+                    pTooltip="1.If type is contract then SOW is processed. &#13;&#10; 2. If full-time then consultant becomes permanent customer employee"
+                    tooltipPosition="top" placeholder="Select Hire Type" [showClear]="false" optionLabel="label" optionValue="code"
+                        formControlName="hireType"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('hireType').touched && this.editRequirementsForm.get('hireType').invalid && this.editRequirementsForm.get('hireType').errors.required">
+                            Please select hire Type
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Start Date<span class="mandatoryColor">*</span></label>
+                    <p-calendar id="popup" dateFormat="mm-dd-yy" formControlName="startDate" placeholder="MM-DD-YYYY"
+                        [showIcon]="true" [showButtonBar]="true">
+                    </p-calendar>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('startDate').touched && this.editRequirementsForm.get('startDate').invalid && this.editRequirementsForm.get('startDate').errors.required">
+                            Please select start date
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">End Date</label>
+                    <p-calendar id="popup" dateFormat="mm-dd-yy" formControlName="endDate" placeholder="MM-DD-YYYY"
+                        [showIcon]="true" [showButtonBar]="true">
+                    </p-calendar>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Billing Type<span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="billingList" placeholder="Select Billing Type" [showClear]="false" optionLabel="label"  optionValue="code"
+                        formControlName="billingType"></p-dropdown>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('billingType').touched && this.editRequirementsForm.get('billingType').invalid && this.editRequirementsForm.get('billingType').errors.required">
+                            Please select billing type
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Duration</label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Duration" formControlName="duration">
+                        <span class="p-inputgroup-addon">/Hr</span>
+                     
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Per Week</label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Per Week" formControlName="perWeek">
+                        <span class="p-inputgroup-addon">Hr</span>
+                       
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Status</label>
+                    <p-dropdown [options]="statusList" placeholder="Select Status" [showClear]="false" optionLabel="label"  optionValue="code"
+                        formControlName="status"></p-dropdown>
+                   
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Skill Set <span class="mandatoryColor">*</span></label>
+                    <p-multiSelect [options]="skillsList" [showToggleAll]="false" formControlName="requirementsSkillSet"
+                        placeholder="Select Search Skills Set" [panelStyle]="{minWidth:'12em'}" optionValue="code" maxSelectedLabels="15"
+                        optionLabel="label" [filter]='false'></p-multiSelect>
+                  
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('requirementsSkillSet').touched && this.editRequirementsForm.get('requirementsSkillSet').invalid && this.editRequirementsForm.get('requirementsSkillSet').errors.required">
+                            Please select skill set
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Preferred Skills <span class="mandatoryColor">*</span></label>
+                    <p-multiSelect [options]="skillsList" [showToggleAll]="false" formControlName="preferredSkills"  maxSelectedLabels="15"
+                        placeholder="Select Preferred Skills" [panelStyle]="{minWidth:'50em'}" optionValue="label"  optionValue="code"
+                        optionLabel="label" [filter]='false'></p-multiSelect>
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.editRequirementsForm.get('preferredSkills').touched && this.editRequirementsForm.get('preferredSkills').invalid && this.editRequirementsForm.get('preferredSkills').errors.required">
+                                Please select skill set
+                            </span>
+                        </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Job Description<span class="mandatoryColor">*</span></label>
+                    <textarea rows="5" cols="30" placeholder="Enter Description" formControlName="description"
+                        pInputTextarea></textarea>
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.editRequirementsForm.get('description').touched && this.editRequirementsForm.get('description').invalid && this.editRequirementsForm.get('description').errors.required">
+                                Please enter job description
+                            </span>
+                        </div>
+                </div>
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Responsibilities<span class="mandatoryColor">*</span></label>
+                    <textarea rows="5" cols="30" placeholder="Enter Responsibilities" formControlName="responsibilities"
+                        pInputTextarea></textarea>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('responsibilities').touched && this.editRequirementsForm.get('responsibilities').invalid && this.editRequirementsForm.get('responsibilities').errors.required">
+                            Please enter responsibilities
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Qualification<span class="mandatoryColor">*</span></label>
+                    <textarea rows="5" cols="30" placeholder="Enter Qualification" formControlName="qualification"
+                        pInputTextarea></textarea>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.editRequirementsForm.get('qualification').touched && this.editRequirementsForm.get('qualification').invalid && this.editRequirementsForm.get('qualification').errors.required">
+                            Please enter qualification
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Comments</label>
+                    <textarea rows="5" cols="30" placeholder="Enter Comments" formControlName="comments"
+                        pInputTextarea></textarea>
+
+                </div>
+            </div>
+
+        </form>
+        <div  class="btnsCSS1">
+            <button pButton class="addhBtn" type="button" icon='pi pi-refresh' label="Reset"></button>&nbsp;
+            <button pButton class="addhBtn" type="button" icon='pi pi-save' (click)="updateRequirement()"  label="Update"></button>&nbsp;
+            
+            
+        </div>
+        <br><br>
+        </p-accordionTab>
+    </p-accordion>
+  
+    <!-- </p-panel> -->
+<!-- </p-card> -->
+
+<!-- <p-panel header="Add Member" >
+    
+        <ng-template pTemplate="icons">
+            <p-button icon="pi pi-arrow-left"  (click)="pannelback()" >
+            </p-button>&nbsp; &nbsp;
+   
+        </ng-template>
+  
+
+    <p-card class="cardform">
+        <form [formGroup]="regForm">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">First Name<span class="mandatoryColor">*</span></label>
+                    <input id="input" type="text"  pKeyFilter="int" autocomplete="off" pInputText
+                        formControlName="firstName" placeholder="firstName">
+                    <div>
+  
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('firstName').touched && this.regForm.get('firstName').invalid && this.regForm.get('firstName').errors.required">
+                        First Name is Required
+                         </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('firstName').touched && this.regForm.get('firstName').invalid && this.regForm.get('firstName').errors.minlength">
+                           Minimum length is 5
+                        </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('firstName').touched && this.regForm.get('firstName').invalid && this.regForm.get('firstName').errors.maxlength">
+                           Maximum length is 30
+                        </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('firstName').touched && this.regForm.get('firstName').invalid && this.regForm.get('firstName').errors.pattern">
+                          Only alphabetrs are rquired
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Middle Name <span class="mandatoryColor"></span></label>
+                    <input id="input" type="text"  autocomplete="off" pInputText
+                        formControlName="middleName" placeholder="MiddleName">
+                        <div>
+                            
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('middleName').touched && this.regForm.get('middleName').invalid && this.regForm.get('middleName').errors.minlength">
+                               Minimum length is 5
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('middleName').touched && this.regForm.get('middleName').invalid && this.regForm.get('middleName').errors.maxlength">
+                               Maximum length is 30
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('middleName').touched && this.regForm.get('middleName').invalid && this.regForm.get('middleName').errors.pattern">
+                              Only alphabetrs are rquired
+                            </span>
+                        </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Last Name <span class="mandatoryColor">*</span> </label>
+                    <input id="input" type="text"  autocomplete="off" pInputText
+                        formControlName="lastName" placeholder="LastName">
+                        <div>
+                            <span class="validationtest"
+                            *ngIf="this.regForm.get('lastName').touched && this.regForm.get('lastName').invalid && this.regForm.get('lastName').errors.required">
+                            First Name is Required
+                             </span>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('lastName').touched && this.regForm.get('lastName').invalid && this.regForm.get('lastName').errors.minlength">
+                               Minimum length is 5
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('lastName').touched && this.regForm.get('lastName').invalid && this.regForm.get('lastName').errors.maxlength">
+                               Maximum length is 30
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('lastName').touched && this.regForm.get('lastName').invalid && this.regForm.get('lastName').errors.pattern">
+                              Only alphabetrs are rquired
+                            </span>
+                        </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Email<span class="mandatoryColor">*</span></label>
+                    <input id="input" type="text" autocomplete="off" pInputText
+                        formControlName="email" placeholder="Email">
+                        <div>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('email').touched && this.regForm.get('email').invalid && this.regForm.get('email').errors.required">
+                               Email is required
+                            </span>
+                            <span class="validationtest"
+                                *ngIf="this.regForm.get('email').touched && this.regForm.get('email').invalid && this.regForm.get('email').errors.email">
+                            Enter Valid email
+                            </span>
+                        </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class=" p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Phone Number <span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="PhoneNumber" formControlName="phoneNumber">
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('phoneNumber').touched && this.regForm.get('phoneNumber').invalid && this.regForm.get('phoneNumber').errors.required">
+                       Phone Number is required
+                    </span>
+                    <span class="validationtest"
+                        *ngIf="this.regForm.get('phoneNumber').touched && this.regForm.get('phoneNumber').invalid && this.regForm.get('phoneNumber').errors.minlength">
+                       Maximum length is 10
+                    </span>
+                    <span class="validationtest"
+                        *ngIf="this.regForm.get('phoneNumber').touched && this.regForm.get('phoneNumber').invalid && this.regForm.get('phoneNumber').errors.maxlength">
+                       Minimum length is 10
+                    </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('phoneNumber').touched && this.regForm.get('phoneNumber').invalid && this.regForm.get('phoneNumber').errors.pattern">
+                           Only Numbers are allowed
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Alternate Number </label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Alternate Number" formControlName="alternateNumber">
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('alternateNumber').touched && this.regForm.get('alternateNumber').invalid && this.regForm.get('alternateNumber').errors.minlength">
+                       Maximum length is 10
+                    </span>
+                    <span class="validationtest"
+                        *ngIf="this.regForm.get('alternateNumber').touched && this.regForm.get('alternateNumber').invalid && this.regForm.get('alternateNumber').errors.maxlength">
+                       Minimum length is 10
+                    </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('alternateNumber').touched && this.regForm.get('alternateNumber').invalid && this.regForm.get('alternateNumber').errors.pattern">
+                           Only Numbers are allowed
+                        </span>
+                    </div>
+                    
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Age<span class="mandatoryColor">*</span> </label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Age" formControlName="age">
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('age').touched && this.regForm.get('age').invalid && this.regForm.get('age').errors.required">
+                       Age is required
+                    </span>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('age').touched && this.regForm.get('age').invalid && this.regForm.get('age').errors.minlength">
+                       Maximum length is 2
+                    </span>
+                    <span class="validationtest"
+                        *ngIf="this.regForm.get('age').touched && this.regForm.get('age').invalid && this.regForm.get('age').errors.maxlength">
+                       Minimum length is 2
+                    </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('age').touched && this.regForm.get('age').invalid && this.regForm.get('age').errors.pattern">
+                           Only Numbers are allowed
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">User Name<span class="mandatoryColor">*</span> </label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="UserName" formControlName="userName">
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('userName').touched && this.regForm.get('userName').invalid && this.regForm.get('userName').errors.required">
+                          User Name is required
+                        </span>
+                  
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('userName').touched && this.regForm.get('userName').invalid && this.regForm.get('userName').errors.pattern">
+                          Only alphabets are required
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Password<span class="mandatoryColor">*</span> </label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Password" formControlName="password">
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('password').touched && this.regForm.get('password').invalid && this.regForm.get('password').errors.required">
+                          Enter Password
+                        </span>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('password').touched && this.regForm.get('password').invalid && this.regForm.get('password').errors.minlength">
+                          Password Minimum length is 5
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Gender <span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="gender" placeholder="Select Gender" [showClear]="false" optionLabel="gen" optionValue="gen"
+                        formControlName="gender"></p-dropdown>
+                    <div>
+                        
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('gender').touched && this.regForm.get('gender').invalid && this.regForm.get('gender').errors.required">
+                            Select Gender
+                        </span>
+                    </div>
+                </div>
+        
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Address Line1 </label>
+                    <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
+                        formControlName="addresLine1" placeholder="Address Line1">
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('addresLine1').touched && this.regForm.get('addresLine1').invalid">
+                            Enter address
+                        </span>
+                    </div>
+                </div>
+        
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first"> Address Line2</label>
+                    <input id="input" type="text"  autocomplete="off" pInputText optionValue="code"
+                        formControlName="addressLine2" placeholder="Address Line2">
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('addressLine2').touched && this.regForm.get('addressLine2').invalid && this.regForm.get('addressLine2').errors.required">
+                            Enter address
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">City<span class="mandatoryColor"></span></label>
+                    <input id="input" type="text"  autocomplete="off" pInputText optionValue="code"
+                        formControlName="city" placeholder="City">
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('city').touched && this.regForm.get('city').invalid">
+                        Enter City Name
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">State<span class="mandatoryColor"></span></label>
+                    <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
+                        formControlName="state" placeholder="State">
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('state').touched && this.regForm.get('state').invalid ">
+                            Enter State Name
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Country</label>
+                    <input id="input" type="text" maxlength="5" pKeyFilter="int" autocomplete="off" pInputText optionValue="code"
+                    formControlName="country" placeholder="Country">
+                <div>
+                    <span class="validationtest"
+                        *ngIf="this.regForm.get('country').touched && this.regForm.get('country').invalid ">
+                        Enter country name
+                    </span>
+                </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Role<span class="mandatoryColor">*</span></label>
+                    <p-dropdown [options]="roles" placeholder="Select Role" [showClear]="false" optionLabel="role"  optionValue="role"
+                        formControlName="role" (onChange)="onChange()"></p-dropdown>
+                    <div>
+                    
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('role').touched && this.regForm.get('role').invalid && this.regForm.get('role').errors.required">
+                            Please select a particular role
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid" *ngIf="addDoctor">
+                
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Doctor Specialization<span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="DoctorSpecilization" formControlName="doctorSpeclization">                  
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('doctorSpeclization').touched && this.regForm.get('doctorSpeclization').invalid && this.regForm.get('doctorSpeclization').errors.required">
+                            Enter Doctor Specialization
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Doctor Available Time<span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Doctor Available Time" formControlName="docatorAvailableTiime">                  
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('docatorAvailableTiime').touched && this.regForm.get('docatorAvailableTiime').invalid && this.regForm.get('docatorAvailableTiime').errors.required">
+                            Enter Docator Available Tiime
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Photo<span class="mandatoryColor">*</span></label>
+                    <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
+                </div>
+            </div>
+            <div class="p-fluid p-formgrid p-grid" *ngIf="addPatient">
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Patient Height <span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="patientHeight" formControlName="patientHeight">                  
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('patientHeight').touched && this.regForm.get('patientHeight').invalid&& this.regForm.get('patientHeight').errors.required">
+                            Please Enter Patient Height
+                        </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Patient Weight <span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="patientWeight" formControlName="patientWeight">                  
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('patientWeight').touched && this.regForm.get('patientWeight').invalid&& this.regForm.get('patientWeight').errors.required">
+                        Please Enter Patient Weight
+                    </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">BloodGroup <span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="bloodGroup" formControlName="bloodGroup">                  
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('bloodGroup').touched && this.regForm.get('bloodGroup').invalid&& this.regForm.get('bloodGroup').errors.required">
+                        Please Enter Patient  BloodGroup
+                    </span>
+                    </div>
+                </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
+                    <label class="first">Patient Problem<span class="mandatoryColor">*</span></label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText placeholder="Patient Problem" formControlName="patientProblem">                  
+                    </div>
+                    <div>
+                        <span class="validationtest"
+                            *ngIf="this.regForm.get('patientProblem').touched && this.regForm.get('patientProblem').invalid&& this.regForm.get('patientProblem').errors.required">
+                            Please Enter Patient Problem
+                        </span>
+                        <span class="validationtest"
+                        *ngIf="this.regForm.get('patientProblem').touched && this.regForm.get('patientProblem').invalid&& this.regForm.get('patientProblem').errors.minlength">
+                        Minimum length should be 10
+                    </span>
+                    </div>
+                </div>
+            
+                
+              
+            </div>
+            <div class="p-fluid p-formgrid p-grid" *ngIf="addPatient">
+                <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-6">
+                    <label class="first"> Patient Description<span class="mandatoryColor">*</span></label>
+                    <textarea rows="5" cols="30" placeholder="Patient Description" formControlName="description"
+                        pInputTextarea></textarea>
+                        <div>
+                            <span class="validationtest" *ngIf="this.regForm.get('description').touched &&this.regForm.get('description').invalid&& this.regForm.get('description').errors.required">
+                               Explain briefly about patient problem 
+                            </span>
+                            <span class="validationtest" *ngIf="this.regForm.get('description').touched &&this.regForm.get('description').invalid&& this.regForm.get('description').errors.minlength">
+                                Minimum length should be 50
+                             </span>
+                        </div>
+                </div>
+                
+            </div>
+         
+                <div class=" col-12 p-col-6 p-md-6 p-sm-12 p-lg-12">
+                    <button pButton class="btn" type="button" (click)="submit()"  label="Reset"></button> 
+                    <button pButton class="btn" type="button" (click)="reset()" label="Submit"></button>
+                </div>
+        <br/>
+        </form>
+    </p-card>
+
+</p-panel> -->
+
+
+
+<!-- <div *ngIf="recCandidates">
+<p-card>
+    <p-accordion>
+        <p-accordionTab header="Received Candidates" [selected]="false">
+    <p-panel header="Requirements" [toggleable]="true">
+        <div class="p-col-12">
+           
+                <form [formGroup]="receivedCandidates">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-3 p-lg-3">
+                            
+                            <label class="first">Frist Name</label>
+                            <input id="input" type="text" maxlength="20"  autocomplete="off" pInputText formControlName="fristName"
+                                placeholder="Enter Frist Name">
+                        </div>
+                        <div class="p-field p-col-12 p-md-3 p-lg-3">
+                          
+                            <label class="first">Last Name</label>
+                            <input id="input" type="text" maxlength="30" autocomplete="off" pInputText   formControlName="lastName"
+                                placeholder="Enter Last Name">
+                        </div>
+                        <div class="p-field p-col-12 p-md-3 p-lg-3">
+                          
+                            <label class="first">Email</label>
+                            <input id="input" type="text" maxlength="30" autocomplete="off" pInputText   formControlName="email"
+                                placeholder="Enter Email">
+                        </div>
+                        <div class="p-field p-col-6 p-md-6 p-sm-12 p-lg-3">
+                            <label class="first"> Skill Set <span class="mandatoryColor">*</span></label>
+                            <p-multiSelect [options]="skillsList" [showToggleAll]="false" formControlName="skillSet"
+                                placeholder="Select Search Skills Set" [panelStyle]="{minWidth:'12em'}" optionValue="code"
+                                optionLabel="label" [filter]='false'></p-multiSelect>
+                        </div>
+                        
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-12 p-md-3">
+                            <label class="first">Status</label>
+                            <p-dropdown [options]="statusList" placeholder="Select Status" optionValue="code" [showClear]="false"  optionLabel="label"
+                        formControlName="status"></p-dropdown>
+                            <p-dropdown placeholder="Select Status"  formControlName="status"></p-dropdown>
+                        </div>
+                        
+                    </div>
+                    <div  class="btnsCSS1" style="margin-top: -42px;">
+                        <button pButton class="addhBtn" type="button" icon='pi pi-plus' label="Add"></button>&nbsp;
+                        <button pButton class="addhBtn" type="button" icon='pi pi-refresh'  label="Reset"></button>&nbsp;
+                        <button pButton class="addhBtn" type="button" icon='pi pi-search' label="Search"></button>&nbsp;
+                    </div>
+                    
+                </form>
+            
+        </div>
+        </p-accordionTab>
+    </p-accordion>
+
+</p-card>
+<h1></h1>
+<p-card>
+    <p-table  [columns]="cols" [value]="recCandidateGrid"  selectionMode="single" dataKey="edit" [responsive]="true" sortMode="multiple">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th id="gridHeader" *ngFor="let col of columns; let i = index" class="textCenter"
+                [ngStyle]="{'width': col.width }"  [pSortableColumn]="col.field">
+                <span>
+                  {{col.header}}
+                  <p-sortIcon  [field]="col.field"></p-sortIcon>
+                </span>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-data>
+          <tr>
+              <td></td>
+          </tr>
+    
+          </ng-template>
+    </p-table>
+</p-card> 
+</div>    -->
+
+
+        <!-- </div> -->
+<!-- </p-card> -->
+

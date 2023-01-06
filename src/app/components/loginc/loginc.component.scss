@@ -1,0 +1,28 @@
+.login{
+    background-image:url('/assets/logo2.png');
+    height:100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.card{
+   align-items: center;
+   width:20%;
+   justify-content: center;
+   height:auto;
+   background-color: rgb(228, 220, 220);
+}
+.container{
+    align-items: center;
+    justify-content: center;
+}
+.eyeicon{
+    position:absolute;
+    // right:41.5%;
+    cursor: pointer;
+    padding-top: 0.5%;
+    padding-left: 16.5%;
+}
