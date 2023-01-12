@@ -20,15 +20,17 @@ import { ListofdoctorsComponent } from './components/patient/listofdoctors/listo
 import { EdituserComponent } from './components/admin/edituser/edituser.component';
 import { ProfileComponent } from './components/profile/profile/profile.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
+           
             {
                 path: '', component: LogincComponent
             },
-
-            { path: "log", component: LogincComponent },
+            {path:'login',component:LoginComponent},
+            // { path: "log", component: LogincComponent },
             {
                 path: 'root', component: AppMainComponent,
                 children: [
@@ -102,7 +104,8 @@ import { EditprofileComponent } from './components/profile/editprofile/editprofi
                     // { path: 'documentation', component: DocumentationComponent }
                 ]
             },
-            { path: "login", component: LogincComponent },
+
+
             // { path: 'error', component: AppErrorComponent },
             // { path: 'access', component: AppAccessdeniedComponent },
             // { path: 'notfound', component: AppNotfoundComponent },

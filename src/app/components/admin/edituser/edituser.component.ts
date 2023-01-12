@@ -52,7 +52,8 @@ export class EdituserComponent implements OnInit {
       role: ['', [Validators.required]],//doctor or patient
       designation: [''],
       availbility: [''],
-      patientProblem: ['']
+      patientProblem: [''],
+      image:['']
     });
     this.edit.get('role').valueChanges.subscribe((data: any) => {
       this.changeValidators()
@@ -207,7 +208,8 @@ export class EdituserComponent implements OnInit {
         "availbility": this.edit.controls.availbility.value,
         "appointment": "null",
         "doc_prescription_1": "null",
-        "doc_prescription_2": "null"
+        "doc_prescription_2": "null",
+        // "image":this.edit.controls.image
       }
       console.log(reqBody);
       console.log();

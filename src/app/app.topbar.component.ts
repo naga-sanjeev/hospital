@@ -34,6 +34,6 @@ export class AppTopBarComponent {
     }
     logout() {
       sessionStorage.clear();
-      this.router.navigateByUrl("/login");
+      this.router.navigateByUrl("");
     }
 }

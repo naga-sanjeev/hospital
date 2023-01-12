@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,6 +23,9 @@ export class AddusersComponent implements OnInit {
   nothing: boolean = true;
   regForm: any
   isDisable = false
+  uploadedFiles: any[] = [];
+  url:any;
+  myfile:any[]=[]; 
   ngOnInit(): void {
     this.roles = [
       { role: 'doctor' },
@@ -56,18 +60,61 @@ export class AddusersComponent implements OnInit {
       role: ['', [Validators.required]],//doctor or patient
       designation: [''],
       availbility: [''],
-      patientProblem: ['']
+      patientProblem: [''],
+      image:['']
     })
     this.regForm.get('role').valueChanges.subscribe((data: any) => {
       this.changeValidators()
     })
     this.updateUsersData()
   }
+  imageFlage:any
+  fileName:any;
+  onBasicUploadAuto(event:any) {
+    console.log("hai");
+    console.log(event);
+    console.log(this.myfile);
+    if (event.currentFiles[0].name === null || event.currentFiles[0].name === undefined) {
+      this.imageFlage = false
+      }
+      const file =event.currentFiles[0];
+      this.fileName = file.name;
+      const pattern = /image-*/;
+      const reader = new FileReader();
+      if (!file.type.match(pattern)) {
+      return;
+      }
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsDataURL(file);
+    // for(let file of event.files) {
+    //     this.uploadedFiles.push(file);
+    //     console.log(this.uploadedFiles);
+    //     // this.regForm.controls['image'].updateValue(this.uploadedFiles)
+    // }
+    // if(e.target.files){
+    //   var reader=new FileReader();
+    //   reader.readAsDataURL(e.target.files[0]);
+    //   reader.onload=(event:any)=>{
+    //     this.url=event.target.result;
+    //     console.log(this.url);
+    //   }
+    // }
+  }
+  url1:any
+  base64:any
+  _handleReaderLoaded(event:any) {
+    const reader = event.target;
+    this.url1 = reader.result;
+    this.base64 = reader.result.substring(reader.result.indexOf(',') + 1);
+    console.log(typeof(this.url));
+    console.log(typeof(this.base64));
+    }
   changeValidators() {
     console.log(this.regForm.get('role').value);
     if (this.regForm.get("role").value == 'doctor') {
       this.regForm.controls['availbility'].setValidators([Validators.required])
       this.regForm.controls['designation'].setValidators([Validators.required])
+      // this.regForm.control['image'].setValidators()
       this.regForm.controls['bloodGroup'].clearValidators()
       this.regForm.controls['patientProblem'].clearValidators()
     }
@@ -76,9 +123,11 @@ export class AddusersComponent implements OnInit {
       this.regForm.controls['patientProblem'].setValidators([Validators.required, Validators.maxLength(30)])
       this.regForm.controls['availbility'].clearValidators()
       this.regForm.controls['designation'].clearValidators()
+      // this.regForm.controls['image'].clearValidators()
     }
     this.regForm.get('availbility').updateValueAndValidity();
     this.regForm.get('designation').updateValueAndValidity();
+    this.regForm.get('image').updateValueAndValidity();
     this.regForm.get('bloodGroup').updateValueAndValidity();
     this.regForm.get('patientProblem').updateValueAndValidity();
   }
@@ -114,7 +163,7 @@ export class AddusersComponent implements OnInit {
     else {
       const reqBody = {
         "Role": this.regForm.controls.role.value,
-        "Firstname": this.regForm.controls.firstName.value,
+        "Firstname": this.regForm.controls.firstName.value, 
         "Middlename": this.regForm.controls.middleName.value,
         "LastName": this.regForm.controls.lastName.value,
         "Email": this.regForm.controls.email.value,
@@ -138,12 +187,12 @@ export class AddusersComponent implements OnInit {
         "availbility": this.regForm.controls.availbility.value,
         "appointment": "null",
         "doc_prescription_1": "null",
-        "doc_prescription_2": "null"
-
+        "doc_prescription_2": "null",
+        "image":this.regForm.controls.image.value
       }
 
       console.log(reqBody);
-
+      this.onBasicUploadAuto(event);
       this.service.postUserData(reqBody).subscribe((i: any) => {
         console.log("postdata enter");
         console.log(i);

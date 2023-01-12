@@ -13,7 +13,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">First Name<span class="mandatoryColor"></span></label>
                         <input id="input" type="text" pKeyFilter="int" autocomplete="off" pInputText
-                            formControlName="firstName" placeholder="firstName">
+                            formControlName="firstName" placeholder="firstName" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('firstName').touched && this.patientPersonalForm.get('firstName').invalid && this.patientPersonalForm.get('firstName').errors.maxlength">
@@ -28,7 +28,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Middle Name <span class="mandatoryColor"></span></label>
                         <input id="input" type="text" autocomplete="off" pInputText formControlName="middleName"
-                            placeholder="MiddleName">
+                            placeholder="MiddleName" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('middleName').touched && this.patientPersonalForm.get('middleName').invalid && this.patientPersonalForm.get('middleName').errors.maxlength">
@@ -43,7 +43,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Last Name <span class="mandatoryColor"></span> </label>
                         <input id="input" type="text" autocomplete="off" pInputText formControlName="lastName"
-                            placeholder="LastName">
+                            placeholder="LastName" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('lastName').touched && this.patientPersonalForm.get('lastName').invalid && this.patientPersonalForm.get('lastName').errors.maxlength">
@@ -58,7 +58,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Email<span class="mandatoryColor"></span></label>
                         <input id="input" type="text" autocomplete="off" pInputText formControlName="email"
-                            placeholder="Email">
+                            placeholder="Email" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('email').touched && this.patientPersonalForm.get('email').invalid && this.patientPersonalForm.get('email').errors.required">
@@ -75,7 +75,7 @@
                     <div class=" p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Phone Number <span class="mandatoryColor"></span></label>
                         <div class="p-inputgroup">
-                            <input type="text" pInputText placeholder="PhoneNumber" formControlName="phoneNumber">
+                            <input type="text" pInputText placeholder="PhoneNumber" formControlName="phoneNumber" [readonly]="true">
                         </div>
                         <div>
                             <span class="validationtest" *ngIf="this.patientPersonalForm.get('phoneNumber').touched ">
@@ -91,7 +91,7 @@
                         <label class="first">Alternate Number </label>
                         <div class="p-inputgroup">
                             <input type="text" pInputText placeholder="Alternate Number"
-                                formControlName="alternateNumber">
+                                formControlName="alternateNumber" [readonly]="true">
                         </div>
                         <div>
                             <span class="validationtest"
@@ -103,7 +103,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Age </label>
                         <div class="p-inputgroup">
-                            <input type="text" pInputText placeholder="Age" formControlName="age">
+                            <input type="text" pInputText placeholder="Age" formControlName="age" [readonly]="true">
                         </div>
                         <div>
                             <span class="validationtest"
@@ -115,7 +115,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Address Line1 </label>
                         <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
-                            formControlName="addresLine1" placeholder="Address Line1">
+                            formControlName="addresLine1" placeholder="Address Line1" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('addresLine1').touched && this.patientPersonalForm.get('addresLine1').invalid">
@@ -128,7 +128,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first"> Address Line2</label>
                         <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
-                            formControlName="addressLine2" placeholder="Address Line2">
+                            formControlName="addressLine2" placeholder="Address Line2" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('addressLine2').touched && this.patientPersonalForm.get('addressLine2').invalid && this.patientPersonalForm.get('addressLine2').errors.required">
@@ -139,7 +139,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">City<span class="mandatoryColor"></span></label>
                         <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
-                            formControlName="city" placeholder="City">
+                            formControlName="city" placeholder="City" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('city').touched && this.patientPersonalForm.get('city').invalid">
@@ -150,7 +150,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">State<span class="mandatoryColor"></span></label>
                         <input id="input" type="text" autocomplete="off" pInputText optionValue="code"
-                            formControlName="state" placeholder="State">
+                            formControlName="state" placeholder="State" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('state').touched && this.patientPersonalForm.get('state').invalid ">
@@ -161,7 +161,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Country</label>
                         <input id="input" type="text" maxlength="5" pKeyFilter="int" autocomplete="off" pInputText
-                            optionValue="code" formControlName="country" placeholder="Country">
+                            optionValue="code" formControlName="country" placeholder="Country" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('country').touched && this.patientPersonalForm.get('country').invalid ">
@@ -175,7 +175,7 @@
                     <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3">
                         <label class="first">Pincode</label>
                         <input id="input" type="text" maxlength="5" pKeyFilter="int" autocomplete="off" pInputText
-                            optionValue="code" formControlName="pinCode" placeholder="PinCode">
+                            optionValue="code" formControlName="pinCode" placeholder="PinCode" [readonly]="true">
                         <div>
                             <span class="validationtest"
                                 *ngIf="this.patientPersonalForm.get('pinCode').touched && this.patientPersonalForm.get('pinCode').invalid ">
@@ -194,7 +194,7 @@
                     <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
                         <label class="first">Patient Problem<span class="mandatoryColor"></span></label>
                         <input id="input" type="text" pKeyFilter="int" autocomplete="off" pInputText
-                            formControlName="patientProblem" placeholder="PatientProblem">
+                            formControlName="patientProblem" placeholder="PatientProblem" >
                     </div>
                     <div class="p-field p-col-4 p-md-3 p-sm-12 p-lg-4">
                         <label class="first">Lab Reports <span class="mandatoryColor"></span></label>

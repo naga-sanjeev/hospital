@@ -37,7 +37,7 @@ export class AppMainComponent {
     inlineMenuClick: boolean;
     roles:any
     constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent) {
-        this.roles=localStorage.getItem('userName');
+        this.roles=sessionStorage.getItem('userName');
         // console.log(this.roles);
     }
 

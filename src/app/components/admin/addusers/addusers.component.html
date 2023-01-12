@@ -273,7 +273,14 @@
                         </span>
                     </div>
                 </div>
-
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3" *ngIf="addDoctor">
+                    <label class="first">Doctor Image<span class="mandatoryColor"></span></label>
+                    <div class="p-inputgroup">
+                        <!-- <input type="file" pInputText placeholder=" DoctorImage" formControlName="image"> -->
+                        <p-fileUpload  mode="basic" name="myfile[]"  accept="image/*" type="file"   chooseLabel="Browse"  (onSelect)="onBasicUploadAuto($event)" ></p-fileUpload>
+                        <!-- <input type="file"  pInputText   (change)="onBasicUploadAuto($event)" > -->
+                    </div>
+                </div>
 
 
                 <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3" *ngIf="addPatient">

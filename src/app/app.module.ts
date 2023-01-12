@@ -265,7 +265,8 @@ import { EditprofileComponent } from './components/profile/editprofile/editprofi
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        AppCodeModule
+        AppCodeModule,
+        
     ],
     declarations: [
         AppComponent,

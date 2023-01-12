@@ -48,7 +48,7 @@ export class LogincComponent implements OnInit {
         console.log(data.response);
         console.log(data.response[0].Role);
         if (data.response[0].Role == 'patient') {
-          var patientId = data.response[0].Id          
+          var patientId = data.response[0].Id
           this.router.navigateByUrl('root/listofdoctors');
           this.role = "Patient"
           sessionStorage.setItem('role', this.role);
@@ -60,37 +60,17 @@ export class LogincComponent implements OnInit {
         }
       }
     })
+    console.log(body.username);
+    if (body.username == 'admin' && body.password == 'admin') {
+      status = 'success'
+      this.router.navigateByUrl('root/admin');
+      this.role = "Admin"
+      sessionStorage.setItem('role', this.role);
+    }
     if (status = "!success") {
       // console.log("failure");
       this.messageService.add({ severity: 'error', summary: 'Enter UserName and Password correctly', detail: '' });
     }
-
-    // console.log(this.username);
-
-
-    // for (let i = 0; i < this.users.length; i++) {
-    //   if (this.role  == 'admin' && this.password == 'admin') {
-    //     //  this.router.navigateByUrl('root');
-    //     this.router.navigateByUrl('root/admin');
-    //      localStorage.setItem('role',this.role );
-
-    //     // this.router.navigate(['/main']);
-    //   }
-    //   else if (this.role  == 'doctor' &&this.password == 'doctor') {
-    //     // this.router.navigateByUrl('root');
-    //     this.router.navigateByUrl('root/doctor');
-    //     localStorage.setItem('role',this.role );
-    //   }
-    //   else if (this.role  =='patient' && this.password== 'patient') {
-    //     // this.router.navigateByUrl('root');
-    //     this.router.navigateByUrl('root/listofdoctors');
-    //     localStorage.setItem('role',this.role );
-    //   }
-    //   else{
-
-    //   }
-    // }
-
 
     // const data1 = {
     //   userId: this.loginForm.controls.email.value,

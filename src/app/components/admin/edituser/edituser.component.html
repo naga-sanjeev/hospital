@@ -257,6 +257,12 @@
                         </span>
                     </div>
                 </div>
+                <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3" *ngIf="addDoctor">
+                    <label class="first">Doctor Image<span class="mandatoryColor"></span></label>
+                    <div class="p-inputgroup">
+                        <!-- <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse"formControlName='image'></p-fileUpload> -->
+                    </div>
+                </div>
                 <div class="p-field p-col-3 p-md-3 p-sm-12 p-lg-3" *ngIf="addPatient">
                     <label class="first">Patient BloodGroup <span class="mandatoryColor">*</span></label>
                     <div class="p-inputgroup">
