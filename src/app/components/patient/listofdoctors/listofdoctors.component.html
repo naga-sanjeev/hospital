@@ -7,8 +7,12 @@
       <h6><p  pTooltip={{list.username}}> <b>Doctor Name :</b> &nbsp; Dr.{{list.username}}</p></h6>
       <p pTooltip={{list.designation}}> <b> Designation :</b>&nbsp;{{list.designation}}</p>
       <p> <b> Available Time :</b>&nbsp;{{list.availbility}}</p>
-      <b> Ratings :</b>
-      <p-rating></p-rating>
+      <!-- <b> Ratings :</b>
+      <p-rating></p-rating> -->
+      <b>Date : </b>
+      <p-calendar  [minDate]="minDate" [maxDate]="maxDate" [readonlyInput]="true" ></p-calendar><br/><br/>
+      <b>Time : </b>
+      <p-calendar  [timeOnly]="true"  [hourFormat]="12" ></p-calendar>
       <ng-template pTemplate="footer">
         <p-button label="Book Slot" (click)="slot(list);list.clicked=true;"[disabled]="list.clicked" class="slotbtn" type="button" ></p-button>
       </ng-template>

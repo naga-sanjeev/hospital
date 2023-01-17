@@ -31,6 +31,10 @@ export class DoctordbComponent implements OnInit {
   
   onDelete(id:any) {
     console.log(id);
+    this.service.deleteUser(id).subscribe((i:any)=>{
+      console.log(i);
+    })
+    this.getData()
   }
   getData() {
     console.log("service start");
