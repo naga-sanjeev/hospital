@@ -74,18 +74,19 @@ export class AddusersComponent implements OnInit {
     console.log("hai");
     console.log(event);
     console.log(this.myfile);
-    if (event.currentFiles[0].name === null || event.currentFiles[0].name === undefined) {
-      this.imageFlage = false
-      }
-      const file =event.currentFiles[0];
-      this.fileName = file.name;
-      const pattern = /image-*/;
-      const reader = new FileReader();
-      if (!file.type.match(pattern)) {
-      return;
-      }
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsDataURL(file);
+    // if (event.currentFiles[0].name === null || event.currentFiles[0].name === undefined) {
+    //   this.imageFlage = false
+    //   }
+    //   const file =event.currentFiles[0];
+    //   this.fileName = file.name;
+    //   const pattern = /image-*/;
+    //   const reader = new FileReader();
+    //   if (!file.type.match(pattern)) {
+    //   return;
+    //   }
+    //   reader.onload = this._handleReaderLoaded.bind(this);
+    //   reader.readAsDataURL(file);
+    
     // for(let file of event.files) {
     //     this.uploadedFiles.push(file);
     //     console.log(this.uploadedFiles);

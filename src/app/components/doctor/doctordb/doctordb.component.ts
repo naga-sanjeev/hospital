@@ -31,27 +31,29 @@ export class DoctordbComponent implements OnInit {
   
   onDelete(id:any) {
     console.log(id);
-    this.service.deleteUser(id).subscribe((i:any)=>{
+    this.service.getDeletePatient(id).subscribe((i:any)=>{
       console.log(i);
     })
-    this.getData()
+    this.getData();
   }
   getData() {
     console.log("service start");
-    var doctorId=JSON.parse(sessionStorage.getItem('userId')||'[]')
-    console.log(doctorId);
-    this.service.getPatientData(doctorId).subscribe((x: any) => {
+   
+    console.log(this.doctorId);
+    this.service.getPatientData(this.doctorId).subscribe((x: any) => {
       console.log(x.response);
       this.patientData=x.response
       console.log(this.patientData);
     })
   }
+  doctorId:any
   ngOnInit(): void {
+     this.doctorId=JSON.parse(sessionStorage.getItem('userId')||'[]')
     this.patientsList = this.fb.group({
       patientName: [''],
       tokenNumber: ['']
     })
     this.getData()
   }
-
+  
 }

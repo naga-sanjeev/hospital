@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 
@@ -9,9 +10,7 @@ import { DataService } from 'src/app/data.service';
 })
 export class AdmindbComponent implements OnInit {
 
-  constructor(private router: Router, private service: DataService) { }
-  patientName: any;
-  tokenNumber: any;
+  constructor(private router: Router, private service: DataService,private fb:FormBuilder) { }
   patientList: any;
   rows: any = 10;
   page: any = 1;
@@ -19,23 +18,22 @@ export class AdmindbComponent implements OnInit {
   first: any;
   reqCount: any;
   usersData: any = []
-
+  searchForm:any
   ngOnInit(): void {
     this.getTableData()
+    this.searchForm=this.fb.group({
+      userName:[],
+      role:[]
+    })
   }
   getTableData() {
     this.service.geUserstData().subscribe((x: any) => {
       console.log(x.respones);
       this.usersData=x.respones
     })
+
   }
-  paginate(event) {
-    let i = 1;
-    this.first = event.first;
-    this.rows = event.rows;
-    this.page = event.page + i++;
-    this.pageCount = event.pageCount;
-  }
+
   onEdit(data: any) {
     console.log("edit option selected");
     console.log(data);
@@ -53,5 +51,25 @@ export class AdmindbComponent implements OnInit {
   add() {
     this.router.navigateByUrl('root/addusers')
   }
-
+  order:boolean=true
+  sortData(){
+    // if(this.order)
+    // {
+    //   let newarr=this.usersData.sort((a,b)=>a.Id-b.Id)
+    //   this.usersData=newarr
+    // }
+    // else{
+    //   let newarr=this.usersData.sort((a,b)=>b.Id-a.Id)
+    //   this.usersData=newarr
+    // }
+    // this.order=!this.order
+  }
+  search(){
+    console.log("values:",this.searchForm.controls);
+    
+    // if (searchValue !== "") {
+    //   const filteredData = data.filter((item) => {
+    //   return Object.values(item.Firstname).join('').toLowerCase().includes(searchValue.toLowerCase())
+    //   }
+  }
 }

@@ -9,4 +9,6 @@ p{
     text-overflow:ellipsis;
     width:100%
 }
-
+:host ::ng-deep .p-dialog .p-dialog-content {
+    overflow: visible;
+}

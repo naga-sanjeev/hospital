@@ -1,20 +1,34 @@
 <div class="card p-grid ">
-  <div class="p-col-3" *ngFor="let list of doctorData">
+  <div class="p-col-3"  *ngFor="let list of doctorData">
     <p-card [style]="{'height':'100%'}">
       <ng-template header="header" pTemplate="header">
         <img alt="Card" [src]="list.img" width="100" height="200">
       </ng-template>
-      <h6><p  pTooltip={{list.username}}> <b>Doctor Name :</b> &nbsp; Dr.{{list.username}}</p></h6>
+      <h6>
+        <p pTooltip={{list.username}}> <b>Doctor Name :</b> &nbsp; Dr.{{list.username}}</p>
+      </h6>
       <p pTooltip={{list.designation}}> <b> Designation :</b>&nbsp;{{list.designation}}</p>
       <p> <b> Available Time :</b>&nbsp;{{list.availbility}}</p>
       <!-- <b> Ratings :</b>
-      <p-rating></p-rating> -->
-      <b>Date : </b>
-      <p-calendar  [minDate]="minDate" [maxDate]="maxDate" [readonlyInput]="true" ></p-calendar><br/><br/>
-      <b>Time : </b>
-      <p-calendar  [timeOnly]="true"  [hourFormat]="12" ></p-calendar>
+      <p-rating></p-rating>
+      <b >Time : </b>
+      <p-calendar  [timeOnly]="true"  [hourFormat]="12" (click)="slotbox"  ></p-calendar>
+      <input type="time" id="appt" name="appt" min="09:00" max="18:00" required pInputText />  -->
+      <p-dialog header="Select Date and Time" [draggable]="false" 
+        [(visible)]="display" [style]="{'width': '55vw','height':'23vh'}"  >
+        <div >
+          <b>Date : </b>
+          <p-calendar [minDate]="minDate" [maxDate]="maxDate"  [readonlyInput]="true"></p-calendar><br /><br />
+          <div *ngFor="let slot of slots" style="display:inline-block">
+            <p-button value="bold" (click)="slotTime(slot,i);slot.clicked=true;" [disabled]="slot.clicked">{{slot.h}}
+            </p-button>&nbsp;&nbsp;
+          </div>
+          <p-button label="Submit" (click)="slot(list);list.clicked=true;" [disabled]="list.clicked" class="slotbtn">
+          </p-button>
+        </div>
+      </p-dialog>
       <ng-template pTemplate="footer">
-        <p-button label="Book Slot" (click)="slot(list);list.clicked=true;"[disabled]="list.clicked" class="slotbtn" type="button" ></p-button>
+        <p-button icon="pi pi-calendar-times" label="Book Slot" (onClick)="openForm()"></p-button>
       </ng-template>
     </p-card>
   </div>

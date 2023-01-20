@@ -58,6 +58,9 @@ export class DataService {
       availabletime: '2 p.M to 2 A.M'
     }
   ]
+  slotsarray=[[{ h: '10:00' }, { h: '10:15' }, { h: '10:30' }, { h: '10:45' }, { h: '11:00' }, { h: '11:15' },
+   { h: '11:30' }],[{ h: '10:00' }, { h: '10:15' }, { h: '10:30' }, { h: '10:45' }, { h: '11:00' }, { h: '11:15' }, { h: '11:30' }]]
+
   //login api
   loginVerification(body: any) {
     return this.http.post('http://172.17.12.65:8000/users/login', body)
@@ -95,6 +98,10 @@ export class DataService {
   getPatientData(id:any) {
     console.log(id);
     return this.http.get('http://172.17.12.65:8000/users/patientdata/'+id);
+  }
+  getDeletePatient(id:any){
+    console.log(id);
+    return this.http.delete("http://172.17.12.65:8000/users/deleteslot/"+id)
   }
   getprescription(id:any,reqBody){
     console.log(id);
