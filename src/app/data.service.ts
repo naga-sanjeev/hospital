@@ -94,6 +94,10 @@ export class DataService {
     console.log(reqBody);
     return this.http.post("http://172.17.12.65:8000/appointments",reqBody);
   }
+  // getFeedBack(reqBody:any){
+  //   console.log(reqBody);
+  //   return this.http.post
+  // }
   //patient api's
   getPatientData(id:any) {
     console.log(id);
@@ -108,4 +112,10 @@ export class DataService {
     console.log(reqBody);
     return this.http.put('http://172.17.12.65:8000/updateuserdata/'+id,reqBody); 
   }
+
+  getSlotTime() {
+   
+    return this.http.get('http://172.17.12.65:8000/listofappointments');
+  }
+
 }

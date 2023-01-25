@@ -172,6 +172,8 @@ import { ListofdoctorsComponent } from './components/patient/listofdoctors/listo
 import { EdituserComponent } from './components/admin/edituser/edituser.component';
 import { ProfileComponent } from './components/profile/profile/profile.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { FeedbackComponent } from './components/patient/feedback/feedback.component';
 
 
 // import { PatientComponent } from './components/patient/patient.component';
@@ -351,6 +353,10 @@ import { EditprofileComponent } from './components/profile/editprofile/editprofi
         ProfileComponent,
         
         EditprofileComponent,
+        
+        DashboardComponent,
+        
+        FeedbackComponent,
         
 
         

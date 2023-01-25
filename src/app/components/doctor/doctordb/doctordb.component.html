@@ -30,19 +30,23 @@
     sortMode="multiple">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="name">ID<p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name">ID
         </th>
-        <th pSortableColumn="name">Patient Name <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name">Patient Name
         </th>
-        <th pSortableColumn="name">Patient Height <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name">Patient Height 
         </th>
-        <th pSortableColumn="name">Patient Weight <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name">Patient Weight
         </th>
-        <th pSortableColumn="name">BloodGroup <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name">BloodGroup 
         </th>
-        <th pSortableColumn="name">PatientProblem <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name">PatientProblem 
         </th>
-        <th pSortableColumn="name">Action <p-sortIcon field="name"></p-sortIcon>
+         <th pSortableColumn="name">Date 
+        </th>
+         <th pSortableColumn="name">Time 
+        </th> 
+        <th pSortableColumn="name">Action 
         </th>
       </tr>
     </ng-template>
@@ -54,6 +58,8 @@
         <td class="textCenter">{{data.weight}} </td>
         <td class="textCenter">{{data.Bloodgroup}}</td>
         <td class="textCenter">{{data.patientproblem}}</td>
+           <td class="textCenter">{{data.date}}</td>
+        <td class="textCenter">{{data.timeslot}}</td>  
         <td>
           <i class="pi pi-user-edit" routerLink="/root/patientpd/{{data.Id}}"  style="font-size: 1rem"></i> &nbsp;&nbsp;
           <i class="pi pi-trash" (click)="onDelete(data.Id)" style="font-size: 1rem"></i>

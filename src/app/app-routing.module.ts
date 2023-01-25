@@ -21,6 +21,8 @@ import { EdituserComponent } from './components/admin/edituser/edituser.componen
 import { ProfileComponent } from './components/profile/profile/profile.component';
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { FeedbackComponent } from './components/patient/feedback/feedback.component';
 
 @NgModule({
     imports: [
@@ -30,6 +32,7 @@ import { LoginComponent } from './components/login/login.component';
                 path: '', component: LogincComponent
             },
             {path:'login',component:LoginComponent},
+       
             // { path: "log", component: LogincComponent },
             {
                 path: 'root', component: AppMainComponent,
@@ -54,7 +57,10 @@ import { LoginComponent } from './components/login/login.component';
                     { path: 'patient', component: PatientdbComponent },
                     { path: 'listofdoctors', component: ListofdoctorsComponent },
                     { path: 'profile', component: ProfileComponent },
-                    { path: 'editprofile/:id', component: EditprofileComponent }
+                    { path: 'editprofile/:id', component: EditprofileComponent },
+                    {
+                     path:'feedback',component:FeedbackComponent
+                    }
                     // { path: 'team', component: TeamComponent },
                     // { path: 'department', component: DepartmentsComponent },
                     // { path: 'job-category', component: JobCategoryComponent },
@@ -104,8 +110,7 @@ import { LoginComponent } from './components/login/login.component';
                     // { path: 'documentation', component: DocumentationComponent }
                 ]
             },
-
-
+            {path:'db',component:DashboardComponent},
             // { path: 'error', component: AppErrorComponent },
             // { path: 'access', component: AppAccessdeniedComponent },
             // { path: 'notfound', component: AppNotfoundComponent },

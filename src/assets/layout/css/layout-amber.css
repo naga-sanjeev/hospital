@@ -160,8 +160,8 @@ a {
 .layout-wrapper .layout-topbar {
   position: fixed;
   height: 60px;
-  top: 0;
-  left: 250px;
+  top: 0; 
+  left: 0px;
   right: 0;
   z-index: 997;
   padding: 8px 25px;
@@ -347,7 +347,7 @@ a {
   color: #727272;
 }
 .layout-wrapper .layout-topbar .topbar-menu > li > ul a img {
-  margin-right: 8px;
+  /* margin-right: 8px; */
   width: 24px;
 }
 .layout-wrapper .layout-topbar .topbar-menu > li > ul a i, .layout-wrapper .layout-topbar .topbar-menu > li > ul a img, .layout-wrapper .layout-topbar .topbar-menu > li > ul a span {

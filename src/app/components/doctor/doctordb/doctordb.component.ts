@@ -28,7 +28,7 @@ export class DoctordbComponent implements OnInit {
     this.page = event.page + i++;
     this.pageCount = event.pageCount;
   }
-  
+  selectedtime:any
   onDelete(id:any) {
     console.log(id);
     this.service.getDeletePatient(id).subscribe((i:any)=>{
@@ -38,9 +38,14 @@ export class DoctordbComponent implements OnInit {
   }
   getData() {
     console.log("service start");
-   
     console.log(this.doctorId);
+    this.service.getSlotTime().subscribe((x: any) =>
+    {
+      console.log(x,"x")
+    })
+
     this.service.getPatientData(this.doctorId).subscribe((x: any) => {
+      console.log(x);
       console.log(x.response);
       this.patientData=x.response
       console.log(this.patientData);
@@ -49,6 +54,10 @@ export class DoctordbComponent implements OnInit {
   doctorId:any
   ngOnInit(): void {
      this.doctorId=JSON.parse(sessionStorage.getItem('userId')||'[]')
+     console.log(this.doctorId,"hello")
+     this.selectedtime = JSON.parse(sessionStorage.getItem('selectedtime') || "[]")
+     console.log(this.selectedtime ,"hiii");
+    //  console.log(JSON.parse(sessionStorage.getItem('selectedtime') || "[]"));
     this.patientsList = this.fb.group({
       patientName: [''],
       tokenNumber: ['']

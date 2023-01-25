@@ -1,0 +1,40 @@
+<div class="grid">
+    <div class="col-12 header">
+        <div class="color">
+            <p-menubar [model]="item2" class="fixed-top">
+                <ng-template pTemplate="start">
+                    <button pButton type="button" label="Search" iconPos="right"
+                        style="background-color:rgb(119, 116, 116);"></button>
+                    icon="pi pi-search"
+                </ng-template>
+
+                <ng-template pTemplate="end">
+                    <button pButton type="button" label="M Track" icon="pi pi-bookmark" iconPos="right"></button>
+                    <div style="text-align: center;">
+                        <img style="width: 32px;height: 32px;" src="./../../../assets/logo.png">
+                    </div>
+                </ng-template>
+            </p-menubar>
+        </div>
+    </div>
+
+    <div class="col-3 side-menu">
+        <p-panelMenu [model]="items">
+
+        </p-panelMenu>
+    </div>
+    <div class="col-12 main-content">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="footer" style="background-color: rgb(110 110 145)">
+        Copyright © {{currenYearFormat}} Welcome. All rights reserved.
+        <a class="text-dark" href="">Saikumar</a>
+    </div>
+</div>
+
+
+
+
+
+

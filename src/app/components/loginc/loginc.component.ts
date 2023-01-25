@@ -44,6 +44,7 @@ export class LogincComponent implements OnInit {
       console.log(data);
       status = data.status
       if (data.status == 'success') {
+   
         sessionStorage.setItem('userId', JSON.stringify(data.response[0].Id))
         console.log(data.response);
         console.log(data.response[0].Role);

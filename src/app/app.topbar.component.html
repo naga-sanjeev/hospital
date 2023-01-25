@@ -17,15 +17,15 @@
                 Role : {{role}}</p>
     <!-- <a href="#" class="layout-topbar-logo">
         <img id="layout-topbar-logo" src="assets\layout\images\SB_Update_1_2.png"  alt="babylon-layout"/>
-    </a>
+    </a> -->
 
-    <a class="layout-menu-button" href="#" (click)="appMain.onMenuButtonClick($event)">
+    <!-- <a class="layout-menu-button" href="#" (click)="appMain.onMenuButtonClick($event)">
         <i class="pi pi-bars"></i>
-    </a>
+    </a> -->
 
     <a id="topbar-menu-button" href="#" (click)="appMain.onTopbarMenuButtonClick($event)">
         <i class="pi pi-ellipsis-v"></i>
-    </a> -->
+    </a>
 
     <ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-visible': appMain.topbarMenuActive}">
         <li #profile class="user-profile" *ngIf="app.profileMode==='popup'||appMain.isHorizontal()"

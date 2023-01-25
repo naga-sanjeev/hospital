@@ -22,8 +22,8 @@ export class AdmindbComponent implements OnInit {
   ngOnInit(): void {
     this.getTableData()
     this.searchForm=this.fb.group({
-      userName:[],
-      role:[]
+      userName:[''],
+      role:['']
     })
   }
   getTableData() {
@@ -33,7 +33,6 @@ export class AdmindbComponent implements OnInit {
     })
 
   }
-
   onEdit(data: any) {
     console.log("edit option selected");
     console.log(data);
@@ -47,7 +46,6 @@ export class AdmindbComponent implements OnInit {
     })
     this.getTableData()
   }
-
   add() {
     this.router.navigateByUrl('root/addusers')
   }
@@ -64,9 +62,18 @@ export class AdmindbComponent implements OnInit {
     // }
     // this.order=!this.order
   }
+  searchUserName:any
+  searchRole:any
   search(){
-    console.log("values:",this.searchForm.controls);
-    
+    console.log("SearchForm:",this.searchForm.controls.userName.value);
+    this.searchUserName=this.searchForm.controls.userName.value    
+    this.searchRole=this.searchForm.controls.role.value
+    if(this.searchUserName !=='')
+    {
+     const filterData=this.usersData.filter((item:any)=>{
+       return Object.values(item.Firstname).join('').toLowerCase().includes(this.searchUserName.toLowerCase())
+     }) 
+    }
     // if (searchValue !== "") {
     //   const filteredData = data.filter((item) => {
     //   return Object.values(item.Firstname).join('').toLowerCase().includes(searchValue.toLowerCase())

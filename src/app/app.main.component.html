@@ -1,4 +1,4 @@
-<div class="layout-wrapper" (click)="onLayoutClick()"
+<!-- <div class="layout-wrapper" (click)="onLayoutClick()"
      [ngClass]="{'layout-static': isStatic(),
                 'layout-overlay': isOverlay(),
                 'layout-overlay-active': overlayMenuActive,
@@ -9,11 +9,11 @@
                 'layout-menu-dark':app.darkMenu,
                 'layout-menu-light':!app.darkMenu, 'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple}">
     <div class="layout-menu-container" (click)="onMenuClick($event)">
-        <!-- <div class="layout-menu-logo">
+        <div class="layout-menu-logo">
             <a>
                 <img id="layout-menu-logo"src="assets\layout\images\SB_Update_1_2.png" style="width: 215px;" library="babylon-layout" />
             </a>
-        </div> -->
+        </div>
         <div class="layout-menu-wrapper">
             <div class="menu-scroll-content" >
                 <app-inline-profile *ngIf="app.profileMode=='inline'&&!isHorizontal()"></app-inline-profile>
@@ -31,17 +31,17 @@
     </div>
     <app-config></app-config>
     <div class="layout-mask"></div>
-</div>
+</div> -->
 
 
-<!-- <div class="layout-wrapper" (click)="onLayoutClick()">
-    <div class="layout-main">
+<div class="layout-wrapper" >  
+    <div class="layout-main">     
         <app-topbar></app-topbar>
         <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>
     </div>
-</div> -->
+</div>
 
 

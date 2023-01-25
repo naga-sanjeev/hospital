@@ -2,35 +2,37 @@
   <div class="p-col-3"  *ngFor="let list of doctorData">
     <p-card [style]="{'height':'100%'}">
       <ng-template header="header" pTemplate="header">
-        <img alt="Card" [src]="list.img" width="100" height="200">
+        <img alt="card" [src]="list.img !=='' ? 'assets/profileimage.png' :'list.img'"  width="100" height="200">
       </ng-template>
       <h6>
         <p pTooltip={{list.username}}> <b>Doctor Name :</b> &nbsp; Dr.{{list.username}}</p>
       </h6>
       <p pTooltip={{list.designation}}> <b> Designation :</b>&nbsp;{{list.designation}}</p>
-      <p> <b> Available Time :</b>&nbsp;{{list.availbility}}</p>
-      <!-- <b> Ratings :</b>
-      <p-rating></p-rating>
-      <b >Time : </b>
-      <p-calendar  [timeOnly]="true"  [hourFormat]="12" (click)="slotbox"  ></p-calendar>
-      <input type="time" id="appt" name="appt" min="09:00" max="18:00" required pInputText />  -->
-      <p-dialog header="Select Date and Time" [draggable]="false" 
-        [(visible)]="display" [style]="{'width': '55vw','height':'23vh'}"  >
-        <div >
-          <b>Date : </b>
-          <p-calendar [minDate]="minDate" [maxDate]="maxDate"  [readonlyInput]="true"></p-calendar><br /><br />
-          <div *ngFor="let slot of slots" style="display:inline-block">
-            <p-button value="bold" (click)="slotTime(slot,i);slot.clicked=true;" [disabled]="slot.clicked">{{slot.h}}
-            </p-button>&nbsp;&nbsp;
-          </div>
-          <p-button label="Submit" (click)="slot(list);list.clicked=true;" [disabled]="list.clicked" class="slotbtn">
-          </p-button>
-        </div>
-      </p-dialog>
+      <p > <b> Available Time :</b>&nbsp;{{list.availbility}} </p>
+      <form [formGroup]="sloatForm">
+        <p>  <b>Date : </b><p-calendar [minDate]="minDate" [maxDate]="maxDate" [readonlyInput]="true" formControlName="date" ></p-calendar></p>
+        <!-- <p>  <b>Time : </b> <p-calendar [timeOnly]="true" [hourFormat]="12" inputId="timeonly" id="timeslot" formControlName="time" ></p-calendar></p> -->
+        <b>Time : </b>  <p-dropdown [options]="slots"  class = "dropdown"optionLabel="h" formControlName="t2"  placeholder="Select Slot" id="select-id" ></p-dropdown>
+      </form> 
       <ng-template pTemplate="footer">
-        <p-button icon="pi pi-calendar-times" label="Book Slot" (onClick)="openForm()"></p-button>
+        <p-button label="Submit" (click)="slot(list)" [disabled]="list.clicked" class="slotbtn">
+        </p-button>
       </ng-template>
     </p-card>
   </div>
 </div>
+<p-button label="FeedBack" (click)="feedBack()">
+</p-button>
+<p-dialog header="FeedBack Form" [(visible)]="display" [style]="{'width': '35vw','height':'32vh'}" >
+  <div>
+    <form [formGroup]="feedbackForm">
+      <h5>FeedBack :</h5>
+      <textarea rows="5" cols="30" pInputTextarea formControlName="feedback" ></textarea><br/>
+      <b> Ratings :</b>
+      <p-rating formControlName="ratings"></p-rating><br/>
+      <p-button label="Submit" (click)="submitFeedBack()">
+      </p-button>
+    </form>
+  </div>
+</p-dialog>
 <p-toast></p-toast>
