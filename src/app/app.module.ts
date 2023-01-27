@@ -174,6 +174,7 @@ import { ProfileComponent } from './components/profile/profile/profile.component
 import { EditprofileComponent } from './components/profile/editprofile/editprofile.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { FeedbackComponent } from './components/patient/feedback/feedback.component';
+import { CommonInterceptor } from './common.interceptor';
 
 
 // import { PatientComponent } from './components/patient/patient.component';
@@ -371,7 +372,7 @@ import { FeedbackComponent } from './components/patient/feedback/feedback.compon
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, BreadcrumbService,
-       
+        {provide:HTTP_INTERCEPTORS,useClass:CommonInterceptor,multi:true}
      
      
     ],

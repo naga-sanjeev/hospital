@@ -2,7 +2,7 @@
   <div class="p-col-3"  *ngFor="let list of doctorData">
     <p-card [style]="{'height':'100%'}">
       <ng-template header="header" pTemplate="header">
-        <img alt="card" [src]="list.img !=='' ? 'assets/profileimage.png' :'list.img'"  width="100" height="200">
+        <img alt="card" [src]="list.img !=='' ? 'assets/images/doctor1.jfif' :'list.img'"  width="100" height="230">
       </ng-template>
       <h6>
         <p pTooltip={{list.username}}> <b>Doctor Name :</b> &nbsp; Dr.{{list.username}}</p>

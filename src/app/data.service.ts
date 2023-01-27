@@ -118,4 +118,8 @@ export class DataService {
     return this.http.get('http://172.17.12.65:8000/listofappointments');
   }
 
+
+  
+
+
 }

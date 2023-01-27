@@ -45,7 +45,6 @@ export class DashboardComponent implements OnInit {
   this.item2=[{
     label:'List',
     icon:'pi pi-list',
-  
   },
   {
     label:'Dashboard',
@@ -64,15 +63,11 @@ export class DashboardComponent implements OnInit {
         {
             label:'New',
             icon:'pi pi-fw pi-user-plus',
-  
         },
         {
             label:'Delete',
             icon:'pi pi-fw pi-user-minus',
-  
-        },
-    
-        
+        },   
     ]
   },
   {
@@ -80,7 +75,6 @@ export class DashboardComponent implements OnInit {
     icon:'pi pi-fw pi-power-off',
     routerLink:['calender']
   }
-  
   ]
   this.items = [
   {
@@ -123,8 +117,6 @@ export class DashboardComponent implements OnInit {
   }
   ];
   }
-
-
 }
 function addNewUser(): void {
   throw new Error('Function not implemented.');
