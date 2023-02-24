@@ -23,6 +23,7 @@ import { EditprofileComponent } from './components/profile/editprofile/editprofi
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { FeedbackComponent } from './components/patient/feedback/feedback.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,7 @@ import { FeedbackComponent } from './components/patient/feedback/feedback.compon
                 path: '', component: LogincComponent
             },
             {path:'login',component:LoginComponent},
-       
+            { path:'reg',component:RegisterFormComponent},
             // { path: "log", component: LogincComponent },
             {
                 path: 'root', component: AppMainComponent,
@@ -60,7 +61,8 @@ import { FeedbackComponent } from './components/patient/feedback/feedback.compon
                     { path: 'editprofile/:id', component: EditprofileComponent },
                     {
                      path:'feedback',component:FeedbackComponent
-                    }
+                    },
+                  
                     // { path: 'team', component: TeamComponent },
                     // { path: 'department', component: DepartmentsComponent },
                     // { path: 'job-category', component: JobCategoryComponent },

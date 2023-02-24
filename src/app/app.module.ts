@@ -175,6 +175,7 @@ import { EditprofileComponent } from './components/profile/editprofile/editprofi
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { FeedbackComponent } from './components/patient/feedback/feedback.component';
 import { CommonInterceptor } from './common.interceptor';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 
 // import { PatientComponent } from './components/patient/patient.component';
@@ -358,6 +359,8 @@ import { CommonInterceptor } from './common.interceptor';
         DashboardComponent,
         
         FeedbackComponent,
+        
+        RegisterFormComponent,
         
 
         

@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,12 +6,11 @@ import { MessageService } from 'primeng/api';
 import { DataService } from 'src/app/data.service';
 
 @Component({
-  selector: 'app-addusers',
-  templateUrl: './addusers.component.html',
-  styleUrls: ['./addusers.component.scss'],
-  providers: [MessageService]
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss']
 })
-export class AddusersComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router, private service: DataService, private https: HttpClient, private messageService: MessageService) { }
   gender: any;
@@ -250,3 +248,4 @@ export class AddusersComponent implements OnInit {
   }
 
 }
+
